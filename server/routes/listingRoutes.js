@@ -1,0 +1,11 @@
+import express from "express";
+import { getListings, getListing, createListing, updateListing, deleteListing, hostListings } from "../controllers/listingController.js";
+import { protect, hostOnly } from "../middleware/auth.js";
+const router = express.Router();
+router.get("/", getListings);
+router.get("/host/mine", protect, hostOnly, hostListings);
+router.get("/:id", getListing);
+router.post("/", protect, hostOnly, createListing);
+router.put("/:id", protect, hostOnly, updateListing);
+router.delete("/:id", protect, hostOnly, deleteListing);
+export default router;
