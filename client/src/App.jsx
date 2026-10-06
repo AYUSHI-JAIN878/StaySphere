@@ -1,3 +1,4 @@
+
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import { AuthProvider } from "./context/AuthContext";
@@ -28,39 +29,30 @@ function AppContent() {
         {/* =========================
             PUBLIC ROUTES
         ========================= */}
+
+        {/* Home - Login ke bina bhi open hoga */}
+        <Route path="/" element={<Home />} />
+
+        {/* Listings - Login ke bina browse kar sakte hain */}
+        <Route path="/listings" element={<Listings />} />
+
+        {/* Property Details - Login ke bina dekh sakte hain */}
+        <Route
+          path="/listings/:id"
+          element={<PropertyDetails />}
+        />
+
+        {/* Login */}
         <Route path="/login" element={<Login />} />
+
+        {/* Register */}
         <Route path="/register" element={<Register />} />
 
         {/* =========================
             PROTECTED ROUTES
         ========================= */}
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
 
-        <Route
-          path="/listings"
-          element={
-            <ProtectedRoute>
-              <Listings />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/listings/:id"
-          element={
-            <ProtectedRoute>
-              <PropertyDetails />
-            </ProtectedRoute>
-          }
-        />
-
+        {/* Booking Success */}
         <Route
           path="/booking-success/:id"
           element={
@@ -70,6 +62,7 @@ function AppContent() {
           }
         />
 
+        {/* My Bookings */}
         <Route
           path="/bookings"
           element={
@@ -79,6 +72,7 @@ function AppContent() {
           }
         />
 
+        {/* Wishlist */}
         <Route
           path="/wishlist"
           element={
@@ -91,6 +85,7 @@ function AppContent() {
         {/* =========================
             HOST ONLY
         ========================= */}
+
         <Route
           path="/host"
           element={
@@ -104,10 +99,10 @@ function AppContent() {
       {/* =========================
           FOOTER - HOME PAGE ONLY
       ========================= */}
+
       {showFooter && (
         <footer className="mt-16 bg-[#fff1f3] border-t border-[#ffd6dc]">
           <div className="container py-10">
-
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
 
               {/* Brand Section */}
@@ -135,7 +130,6 @@ function AppContent() {
               </div>
 
             </div>
-
           </div>
         </footer>
       )}
